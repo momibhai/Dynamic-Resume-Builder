@@ -3,53 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Resume Builder</title>
+    <title>Resume Builder</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
 </head>
 <body>
     <h1>Milestone 3 (Dynamic Resume Builder)</h1>
-    <form id="resumeForm">
-
+    <form id="resumeForm" class="resume-form">
         <fieldset>
             <legend>Personal Information</legend>
             <label for="name">Name</label>
-            <input type="name" id="name" name="name" required>
+            <input type="text" id="name" name="name" placeholder="Muhammad Ali" required>
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="phone">Phone</label>
-            <input type="phone" id="phone" name="phone" required>
+            <label for="designation">Designation</label>
+            <input type="text" id="designation" name="designation" placeholder="Full Stack Developer" required>
 
             <label for="profile">Profile (Upload Image)</label>
             <input type="file" id="profile" name="profile" accept="image/*" required>
         </fieldset>
 
         <fieldset>
-            <legend>Education</legend>
-            <label for="education">Education</label>
-            <textarea name="education" id="education" rows="4" required></textarea>
-        </fieldset>
-
-        <fieldset>
-            <legend>Experience</legend>
-            <label for="experience">Experience</label>
-            <textarea name="experience" id="experience" rows="4" required></textarea>
+            <legend>Personal Profile</legend>
+            <textarea name="profileText" id="profileText" rows="4" placeholder="Write about yourself (200-400 words)" minlength="200" maxlength="400" required></textarea>
         </fieldset>
 
         <fieldset>
             <legend>Skills</legend>
-            <label for="skill">Skills</label>
-            <textarea name="skill" id="skill" rows="4" required></textarea>
+            <input type="text" id="skills" name="skills" placeholder="Enter skills, separated by commas" required>
         </fieldset>
 
-        <button type="submit">Generate Resume Below</button>
+        <fieldset>
+            <legend>Work Experience</legend>
+            <textarea name="experience" id="experience" rows="4" placeholder="Enter work experience with dates, e.g., 2022 - 2024, AU Digital" required></textarea>
+        </fieldset>
+
+        <fieldset>
+            <legend>Education</legend>
+            <textarea name="education" id="education" rows="4" placeholder="Enter education details, e.g., 2018 - 2020, PECHS College" required></textarea>
+        </fieldset>
+
+        <fieldset>
+            <legend>Contact</legend>
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="+92 3132248178" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="ma4578233@gmail.com" required>
+
+            <label for="address">Address</label>
+            <textarea name="address" id="address" rows="2" placeholder="R 78 Gulshan e Akbar Malir Karachi" required></textarea>
+
+            <label for="portfolio">Portfolio Website (optional)</label>
+            <input type="url" id="portfolio" name="portfolio" placeholder="https://yourportfolio.com">
+        </fieldset>
+
+        <button type="submit" class="generate-button">Generate Resume</button>
     </form>
 
-    <div id="resumeOutput" style="display: none;">
-        <!-- Resume will be generated here -->
+    <div id="resumeOutput" class="resume-output" style="display: none;"></div>
+
+    <div class="download-container">
+        <button id="downloadCVButton" onclick="downloadCV()">Download CV</button>
     </div>
 
-    <script src="script.js"></script> 
+    <script src="script.js"></script>
 </body>
 </html>

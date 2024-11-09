@@ -1,61 +1,66 @@
 document.getElementById("resumeForm")?.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const nameElement = document.getElementById("name") as HTMLInputElement;
-    const emailElement = document.getElementById("email") as HTMLInputElement;
-    const phoneElement = document.getElementById("phone") as HTMLInputElement;
-    const educationElement = document.getElementById("education") as HTMLTextAreaElement;
-    const experienceElement = document.getElementById("experience") as HTMLTextAreaElement;
-    const skillElement = document.getElementById("skill") as HTMLTextAreaElement;
-    const profileElement = document.getElementById("profile") as HTMLInputElement;
+    const name = (document.getElementById("name") as HTMLInputElement).value;
+    const designation = (document.getElementById("designation") as HTMLInputElement).value;
+    const profileText = (document.getElementById("profileText") as HTMLTextAreaElement).value;
+    const skills = (document.getElementById("skills") as HTMLInputElement).value;
+    const experience = (document.getElementById("experience") as HTMLTextAreaElement).value;
+    const education = (document.getElementById("education") as HTMLTextAreaElement).value;
+    const phone = (document.getElementById("phone") as HTMLInputElement).value;
+    const email = (document.getElementById("email") as HTMLInputElement).value;
+    const address = (document.getElementById("address") as HTMLTextAreaElement).value;
+    const portfolio = (document.getElementById("portfolio") as HTMLInputElement).value;
+    const profileFile = (document.getElementById("profile") as HTMLInputElement).files?.[0];
+    const profileURL = profileFile ? URL.createObjectURL(profileFile) : '';
 
-    if (nameElement && emailElement && phoneElement && educationElement && experienceElement && skillElement && profileElement) {
-        const name = nameElement.value;
-        const email = emailElement.value;
-        const phone = phoneElement.value;
-        const education = educationElement.value;
-        const experience = experienceElement.value;
-        const skill = skillElement.value;
+    const skillList = skills.split(',').map(skill => `<li>${skill.trim()}</li>`).join('');
 
-        const resumeOutput = document.getElementById("resumeOutput") as HTMLDivElement;
-
-        if (profileElement.files && profileElement.files[0]) {
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                const profileImageSrc = e.target?.result;
-
-                const resumeHTML = `
-                    <hr>
-                    <h2>Generated Resume</h2>
-                    <img src="${profileImageSrc}" alt="Profile Image" style="width: 150px; height: 150px; border-radius: 50%;">
-                    <p><strong>Name:</strong> ${name}</p>
-                    <p><strong>Email:</strong> ${email}</p>
-                    <p><strong>Phone:</strong> ${phone}</p>
-                    <hr>
-
-                    <h3>Education</h3>
-                    <p>${education}</p>
-
-                    <h3>Experience</h3>
+    const resumeHTML = `
+        <div class="resume">
+            <div class="header">
+                <div class="photo">
+                    ${profileURL ? `<img src="${profileURL}" alt="Profile Photo">` : ''}
+                </div>
+                <div class="name-title">
+                    <h1>${name}</h1>
+                    <h2>${designation}</h2>
+                </div>
+            </div>
+            <div class="content">
+                <div class="section profile">
+                    <h3>PERSONAL PROFILE</h3>
+                    <p>${profileText}</p>
+                </div>
+                <div class="section experience">
+                    <h3>WORK EXPERIENCE</h3>
                     <p>${experience}</p>
+                </div>
+                <div class="section skills">
+                    <h3>SKILLS</h3>
+                    <ul>${skillList}</ul>
+                </div>
+                <div class="section education">
+                    <h3>EDUCATION</h3>
+                    <p>${education}</p>
+                </div>
+                <div class="section contact">
+                    <h3>CONTACT</h3>
+                    <p><strong>📞</strong> ${phone}</p>
+                    <p><strong>✉️</strong> ${email}</p>
+                    <p><strong>🏠</strong> ${address}</p>
+                    ${portfolio ? `<p><strong>🌐</strong> <a href="${portfolio}" target="_blank">${portfolio}</a></p>` : ''}
+                </div>
+            </div>
+        </div>
+    `;
 
-                    <h3>Skills</h3>
-                    <p>${skill}</p>
-                    <hr>
-                `;
-
-                if (resumeOutput) {
-                    resumeOutput.innerHTML = resumeHTML;
-                    resumeOutput.style.display = "block";
-                }
-            };
-
-            reader.readAsDataURL(profileElement.files[0]); // Convert image to base64 string
-        } else {
-            alert("Please upload a profile image.");
-        }
-    } else {
-        alert("Please fill all elements.");
+    const resumeOutput = document.getElementById("resumeOutput");
+    if (resumeOutput) {
+        resumeOutput.style.display = "block";
+        resumeOutput.innerHTML = resumeHTML;
     }
+
+    
+
 });
