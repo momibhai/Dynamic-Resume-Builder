@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 
 </head>
 <body>
     <h1>Milestone 3 (Dynamic Resume Builder)</h1>
     <form id="resumeForm" class="resume-form">
         <fieldset>
-            <legend>Personal Information</legend>
+            <legend >Personal Information</legend>
             <label for="name">Name</label>
             <input type="text" id="name" name="name" placeholder="Muhammad Ali" required>
 
@@ -65,8 +65,8 @@
 
     <div id="resumeOutput" class="resume-output" style="display: none;"></div>
 
-    <div class="download-container">
-        <button id="downloadCVButton" onclick="downloadCV()">Download CV</button>
+    <div class="download-container" style="width: 45%">
+        <button id="downloadCVButton"  onclick="downloadCV()">Download CV</button>
     </div>
 
     <script src="script.js"></script>

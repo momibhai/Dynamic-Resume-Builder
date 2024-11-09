@@ -15,11 +15,13 @@ body {
     align-items: center;
     min-height: 100vh;
     flex-direction: column;
+    padding: 10px;
 }
 
 /* Form Wrapper Styling */
 .resume-form {
-    width: 700px;
+    width: 100%;
+    max-width: 700px;
     background-color: #111;
     color: #fff;
     border-radius: 10px;
@@ -32,25 +34,25 @@ body {
 label, legend {
     color: #ffcc00;
     font-weight: bold;
-    margin-top: 15px; /* Adds spacing above each label */
+    margin-top: 15px;
     display: block;
 }
 
 /* Legend Margin */
 legend {
-    margin-bottom: 15px; /* Adds space below each legend */
+    margin-bottom: 15px;
 }
 
 /* Label Left Margin */
 label {
-    margin-left: 10px; /* Adds left margin to labels */
+    margin-left: 10px;
 }
 
 /* Input and Textarea Styling */
 input, textarea {
-    width: calc(100% - 40px); /* Adjusted to match the form width with left margin */
+    width: calc(100% - 40px); /* Adjust width to form with margins */
     padding: 10px;
-    margin: 10px 0 20px 10px; /* Adds spacing above, below, and left of inputs */
+    margin: 10px 0 20px 10px;
     background-color: #333;
     color: #fff;
     border: 1px solid #555;
@@ -78,13 +80,16 @@ input, textarea {
 /* Resume Output Styling */
 .resume-output {
     max-width: 700px;
+    width: 100%;
     background-color: #111;
     border-radius: 10px;
     color: #fff;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: none; /* Initially hidden until resume is generated */
 }
 
+/* Resume Header */
 .resume-output .header {
     display: flex;
     align-items: center;
@@ -137,4 +142,111 @@ input, textarea {
 
 .contact p a:hover {
     text-decoration: underline;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Mobile Devices (Max-width: 768px) */
+@media (max-width: 768px) {
+    body {
+        padding: 5px;
+    }
+
+    /* Form styling adjustments for mobile */
+    .resume-form {
+        padding: 15px;
+    }
+
+    .resume-form input, .resume-form textarea {
+        margin: 8px 0 16px 8px;
+        padding: 8px;
+    }
+
+    /* Button adjustments for mobile */
+    .generate-button, #downloadCVButton {
+        padding: 10px;
+    }
+
+    .resume-output .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .resume-output .photo {
+        margin-bottom: 15px;
+    }
+
+    .resume-output .name-title h1 {
+        font-size: 1.6rem;
+    }
+
+    .resume-output .name-title h2 {
+        font-size: 1rem;
+    }
+
+    .section h3 {
+        font-size: 1.3rem;
+    }
+
+    .section p, .section ul {
+        font-size: 0.9rem;
+    }
+}
+
+/* Small Devices (Max-width: 480px) */
+@media (max-width: 480px) {
+    /* Reduce form padding for small screens */
+    .resume-form {
+        padding: 10px;
+    }
+
+    /* Input and textarea adjustments */
+    .resume-form input, .resume-form textarea {
+        width: 100%;
+        padding: 8px;
+    }
+
+    /* Button styling adjustments */
+    .generate-button, #downloadCVButton {
+        padding: 10px;
+    }
+
+    .resume-output .name-title h1 {
+        font-size: 1.4rem;
+    }
+
+    .resume-output .name-title h2 {
+        font-size: 0.9rem;
+    }
+
+    .section h3 {
+        font-size: 1.2rem;
+    }
+
+    .section p, .section ul {
+        font-size: 0.85rem;
+    }
+}
+
+/* For very small screens (Max-width: 360px) */
+@media (max-width: 360px) {
+    .resume-form input, .resume-form textarea {
+        font-size: 14px;
+    }
+
+    .section h3 {
+        font-size: 1.1rem;
+    }
+
+    .section p, .section ul {
+        font-size: 0.8rem;
+    }
+
+    .resume-output .name-title h1 {
+        font-size: 1.3rem;
+    }
+
+    .resume-output .name-title h2 {
+        font-size: 0.8rem;
+    }
 }
